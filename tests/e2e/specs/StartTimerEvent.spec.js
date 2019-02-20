@@ -1,9 +1,6 @@
 import {
   dragFromSourceToDest,
-  getGraphElements,
-  waitToRenderAllShapes,
-  generateXML,
-  connectNodesWithFlow,
+  typeIntoTextInput,
 } from '../support/utils';
 
 import { nodeTypes } from '../support/constants';
@@ -22,5 +19,9 @@ describe('Start Timer Event', () => {
       '.paper-container',
       startTimerEventPosition
     );
+
+    cy.get('.joint-viewport').find('#v-24').click({force: true});
+    typeIntoTextInput('[name=\'name\']', testString);
+    cy.get('[name=\'name\']').should('have.value', testString);
   });
 });
