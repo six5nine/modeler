@@ -17,21 +17,6 @@ describe('Modeler', () => {
     cy.get('.navbar').should('contain', 'ProcessMaker Modeler');
   });
 
-  it('Renders list of nodes', () => {
-    const emptyChildrenCount = 2;
-
-    cy.get('.modeler').children().should('have.length', emptyChildrenCount);
-
-    nodeTypes.forEach(type => {
-      dragFromSourceToDest(
-        type,
-        '.paper-container',
-        200, 200
-      );
-    });
-    cy.get('.modeler').children().should('have.length', emptyChildrenCount + nodeTypes.length);
-  });
-
   it('Create a simple process', () => {
     /* Only the initial start element should exist */
     const initialNumberOfElements = 1;
@@ -41,7 +26,7 @@ describe('Modeler', () => {
 
     const taskPosition = { x: 300, y: 200 };
     dragFromSourceToDest(
-      'processmaker-modeler-task',
+      nodeTypes.task,
       '.paper-container',
       taskPosition,
     );
@@ -52,7 +37,7 @@ describe('Modeler', () => {
 
     const task2Position = { x: 300, y: 350 };
     dragFromSourceToDest(
-      'processmaker-modeler-task',
+      nodeTypes.task,
       '.paper-container',
       task2Position,
     );
@@ -60,7 +45,7 @@ describe('Modeler', () => {
 
     const task3Position = { x: 100, y: 350 };
     dragFromSourceToDest(
-      'processmaker-modeler-task',
+      nodeTypes.task,
       '.paper-container',
       task3Position,
     );
@@ -68,14 +53,14 @@ describe('Modeler', () => {
 
     const endEventPosition = { x: 100, y: 500 };
     dragFromSourceToDest(
-      'processmaker-modeler-end-event',
+      nodeTypes.endEvent,
       '.paper-container',
       endEventPosition,
     );
     connectNodesWithFlow('sequence-flow-button', task3Position, endEventPosition);
 
     dragFromSourceToDest(
-      'processmaker-modeler-pool',
+      nodeTypes.pool,
       '.paper-container',
       { x: 100, y: 100 },
     );
@@ -108,7 +93,7 @@ describe('Modeler', () => {
 
     const taskPosition = { x: 400, y: 300 };
     dragFromSourceToDest(
-      'processmaker-modeler-task',
+      nodeTypes.task,
       '.paper-container',
       taskPosition
     );

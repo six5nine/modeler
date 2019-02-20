@@ -2,6 +2,7 @@ import {
   dragFromSourceToDest,
   typeIntoTextInput,
 } from '../support/utils';
+import { nodeTypes } from '../support/constants';
 
 describe('Parallel Gateway', () => {
   beforeEach(() => {
@@ -13,7 +14,7 @@ describe('Parallel Gateway', () => {
     const parallelGatewaySelector = '#v-21';
 
     dragFromSourceToDest(
-      'processmaker-modeler-parallel-gateway',
+      nodeTypes.parallelGateway,
       '.paper-container',
       200, 200
     );

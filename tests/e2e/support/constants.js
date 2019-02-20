@@ -7,14 +7,15 @@ export const defaultViewportDimensions = {
   height: 768,
 };
 
-export const nodeTypes = [
-  'processmaker-modeler-task',
-  'processmaker-modeler-end-event',
-  'processmaker-modeler-script-task',
-  'processmaker-modeler-exclusive-gateway',
-  'processmaker-modeler-parallel-gateway',
-  'processmaker-modeler-text-annotation',
-  'processmaker-modeler-pool',
-  'processmaker-modeler-start-timer-event',
-  'processmaker-modeler-intermediate-catch-timer-event',
-];
+export const nodeTypes = {
+  task: 'processmaker-modeler-task',
+  endEvent: 'processmaker-modeler-end-event',
+  scriptTask: 'processmaker-modeler-script-task',
+  exclusiveGateway: 'processmaker-modeler-exclusive-gateway',
+  parallelGateway: 'processmaker-modeler-parallel-gateway',
+  textAnnotation: 'processmaker-modeler-text-annotation',
+  pool: 'processmaker-modeler-pool',
+  startTimerEvent: 'processmaker-modeler-start-timer-event',
+  intermediateCatchTimerEvent: 'processmaker-modeler-intermediate-catch-timer-event',
+};
+

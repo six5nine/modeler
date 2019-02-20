@@ -5,6 +5,7 @@ import {
   waitToRenderAllShapes,
   typeIntoTextInput,
 } from '../support/utils';
+import { nodeTypes } from '../support/constants';
 
 describe('Pools', () => {
   beforeEach(() => {
@@ -15,7 +16,7 @@ describe('Pools', () => {
     const testString = 'testing';
 
     dragFromSourceToDest(
-      'processmaker-modeler-pool',
+      nodeTypes.pool,
       '.paper-container',
       200, 200
     );
@@ -29,7 +30,7 @@ describe('Pools', () => {
     const poolPosition = { x: 200, y: 200 };
 
     dragFromSourceToDest(
-      'processmaker-modeler-pool',
+      nodeTypes.pool,
       '.paper-container',
       poolPosition,
     );

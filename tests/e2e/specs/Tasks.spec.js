@@ -2,6 +2,7 @@ import {
   dragFromSourceToDest,
   typeIntoTextInput,
 } from '../support/utils';
+import { nodeTypes } from '../support/constants';
 
 describe('Tasks', () => {
   beforeEach(() => {
@@ -12,7 +13,7 @@ describe('Tasks', () => {
     const testString = 'testing';
 
     dragFromSourceToDest(
-      'processmaker-modeler-task',
+      nodeTypes.task,
       '.paper-container',
       200, 200
     );

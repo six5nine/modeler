@@ -2,6 +2,7 @@ import {
   dragFromSourceToDest,
   typeIntoTextInput,
 } from '../support/utils';
+import { nodeTypes } from '../support/constants';
 
 describe('Text Annotation', () => {
   beforeEach(() => {
@@ -12,7 +13,7 @@ describe('Text Annotation', () => {
     const testString = 'testing';
 
     dragFromSourceToDest(
-      'processmaker-modeler-text-annotation',
+      nodeTypes.textAnnotation,
       '.paper-container',
       200, 200
     );

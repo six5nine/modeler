@@ -6,6 +6,7 @@ import {
 } from '../support/utils';
 
 import { direction } from '../../../src/components/nodes/association/associationConfig';
+import { nodeTypes } from '../support/constants';
 
 describe('Association Flows', () => {
   beforeEach(() => {
@@ -22,14 +23,14 @@ describe('Association Flows', () => {
 
     const textAnnotationPosition = { x: 400, y: 100 };
     dragFromSourceToDest(
-      'processmaker-modeler-text-annotation',
+      nodeTypes.textAnnotation,
       '.paper-container',
       textAnnotationPosition,
     );
 
     const taskPosition = { x: 400, y: 300 };
     dragFromSourceToDest(
-      'processmaker-modeler-task',
+      nodeTypes.task,
       '.paper-container',
       taskPosition,
     );

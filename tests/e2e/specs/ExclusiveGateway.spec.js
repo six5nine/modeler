@@ -5,6 +5,7 @@ import {
   typeIntoTextInput,
   connectNodesWithFlow,
 } from '../support/utils';
+import { nodeTypes } from '../support/constants';
 
 describe('Exclusive Gateway', () => {
   beforeEach(() => {
@@ -16,7 +17,7 @@ describe('Exclusive Gateway', () => {
     const exclusiveGatewaySelector = '#v-19';
 
     dragFromSourceToDest(
-      'processmaker-modeler-exclusive-gateway',
+      nodeTypes.exclusiveGateway,
       '.paper-container',
       200, 200
     );
@@ -29,14 +30,14 @@ describe('Exclusive Gateway', () => {
   it('Update Condition expression', () => {
     const exclusiveGatewayPosition = { x: 400, y: 300 };
     dragFromSourceToDest(
-      'processmaker-modeler-exclusive-gateway',
+      nodeTypes.exclusiveGateway,
       '.paper-container',
       exclusiveGatewayPosition
     );
 
     const taskPosition = { x: 400, y: 500 };
     dragFromSourceToDest(
-      'processmaker-modeler-task',
+      nodeTypes.task,
       '.paper-container',
       taskPosition
     );
