@@ -15,4 +15,6 @@ export const nodeTypes = [
   'processmaker-modeler-parallel-gateway',
   'processmaker-modeler-text-annotation',
   'processmaker-modeler-pool',
+  'processmaker-modeler-start-timer-event',
+  'processmaker-modeler-intermediate-catch-timer-event',
 ];
