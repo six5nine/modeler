@@ -22,9 +22,12 @@
 
         <button class="validate-button" @click="validateBpmnDiagram">Validate Diagram</button>
 
-        <drop @drop="handleDrop" @dragover="validateDropTarget">
-          <div ref="paper" data-test="paper"/>
-        </drop>
+        <!-- <drop @drop="handleDrop" @dragover="validateDropTarget"> -->
+        <div class="draggable-container">
+          <div class="dropzone">
+            <div ref="paper" data-test="paper" />
+          </div>
+        </div>
       </div>
 
       <InspectorPanel
@@ -81,21 +84,17 @@ import { Linter } from 'bpmnlint';
 import linterConfig from '../../.bpmnlintrc';
 import NodeIdGenerator from '../NodeIdGenerator';
 import Process from './inspectors/process';
-
-// Our renderer for our inspector
-import { Drop } from 'vue-drag-drop';
-
 import { id as poolId } from './nodes/pool';
 import { id as laneId } from './nodes/poolLane';
 import { id as sequenceFlowId } from './nodes/sequenceFlow';
 import { id as associationId } from './nodes/association';
 import { id as messageFlowId } from './nodes/messageFlow';
+import { Droppable } from '@shopify/draggable';
 
 const version = '1.0';
 
 export default {
   components: {
-    Drop,
     controls,
     InspectorPanel,
   },
@@ -658,6 +657,30 @@ export default {
         this.bringShapeToFront(shape);
       }
     },
+    setUpDragAndDrop() {
+      const containers = document.querySelectorAll('.draggable-container');
+      const droppable = new Droppable(containers, {
+        draggable: '.draggable-source',
+        dropzone: '.dropzone',
+        plugins: [],
+        mirror: {
+          constrainDimensions: true,
+        },
+      });
+
+      droppable.on('drag:start', () => {
+        console.log('drag:start');
+      });
+
+      droppable.on('droppable:dropped', event => {
+        event.cancel();
+        console.log('droppable:dropped');
+      });
+
+      droppable.on('droppable:returned', event => {
+        console.log('droppable:returned');
+      });
+    },
   },
   created() {
     this.registerNode(Process);
@@ -674,6 +697,10 @@ export default {
     this.linter = new Linter(linterConfig);
   },
   mounted() {
+    this.$nextTick(() => {
+      this.setUpDragAndDrop();
+    });
+
     this.graph = new joint.dia.Graph();
     store.commit('setGraph', this.graph);
     this.graph.set('interactiveFunc', cellView => {

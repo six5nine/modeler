@@ -8,36 +8,33 @@
       v-model="filterQuery"
     >
 
-    <div class="list">
+    <div class="list draggable-container">
       <div v-for="(items, category) in controls" :key="category">
         <h2>{{ $t(category) }}</h2>
-        <drag
+        <div
           v-for="(control, index) in items"
           :key="index"
           :transfer-data="{type: control.type}"
           v-if="control.label.toLowerCase().includes(filterQuery.toLowerCase())"
           :data-test="control.type"
+          class="dropzone draggable-dropzone--occupied"
         >
-          <div class="tool">
+          <div class="tool draggable-source">
             <div class="img-container">
               <img :src="control.icon">
             </div>
             <div>{{ $t(control.label) }}</div>
           </div>
-        </drag>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Drag } from 'vue-drag-drop';
 
 export default {
   props: ['controls'],
-  components: {
-    Drag,
-  },
   data() {
     return {
       filterQuery: '',
@@ -48,7 +45,8 @@ export default {
 
 <style lang="scss" scoped>
 .controls {
-  background-color: #eee;
+  user-select: none;
+  background: #eee;
   border-right: 1px solid #aaa;
   width: 320px;
   text-align: left;
@@ -60,7 +58,7 @@ export default {
     height: 100%;
 
     h2 {
-      background-color: #aaa;
+      background: #aaa;
       border-top: 1px solid #999;
       border-bottom: 1px solid #999;
       padding-left: 8px;
@@ -71,17 +69,30 @@ export default {
       padding-top: 8px;
     }
 
+    .draggable--original {
+      display: none !important;
+    }
+
     .tool {
+      background: #eee;
       display: flex;
       align-items: center;
       font-size: 0.75em;
       padding: 4px;
       font-weight: bold;
       color: #333;
-      cursor: pointer;
+      cursor: grab;
 
-      &:hover {
-        background-color: #3397e1;
+      &.draggable-mirror {
+        pointer-events: auto !important;
+        background: #eee !important;
+        z-index: 2;
+        cursor: grabbing !important;
+        box-shadow: 5px 5px 8px 0px #0000004a;
+      }
+
+      &:not(.draggable-mirror):hover {
+        background: #3397e1;
         color: white;
       }
 
