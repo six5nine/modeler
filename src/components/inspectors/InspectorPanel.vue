@@ -1,6 +1,6 @@
 <template>
   <b-card no-body class="inspector-container">
-    <div class="card-header">{{ $t('Inspector') }}</div>
+    <div class="card-header">{{ $t('Inspector Branch Dependency') }}</div>
     <vue-form-renderer
       v-if="highlightedNode"
       :data="data"
