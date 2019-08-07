@@ -59,6 +59,14 @@ export default new Vuex.Store({
 
       state.nodes.push(node);
     },
+    replaceNode(state, { currentNode, newNode }) {
+      console.log('currentNode', currentNode.definition.get('id'));
+      console.log('newNode', newNode.definition.get('id'));
+
+      newNode._modelerId = '_modelerId_' + newNode.definition.get('id');
+      const nodeIndex = state.nodes.indexOf(currentNode);
+      state.nodes.splice(nodeIndex, 1, newNode);
+    },
     removeNode(state, node) {
       const index = state.nodes.indexOf(node);
 

@@ -26,6 +26,11 @@ export default new Vuex.Store( {
     setState(state, newState) {
       state.stack = state.stack.slice(0, state.position + 1);
       state.stack.push(newState);
+      console.log('setState', newState);
+    },
+    replaceState(state, newState) {
+      state.stack[state.stack.length - 1] = newState;
+      console.log('replaceState', newState);
     },
     clearStack(state) {
       state.stack = [state.stack[state.stack.length - 1]];

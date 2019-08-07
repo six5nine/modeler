@@ -73,7 +73,7 @@
     <component
       v-for="node in nodes"
       :is="node.type"
-      :key="node._modelerId"
+      :key="`${node.type}${node._modelerId}`"
       :graph="graph"
       :paper="paper"
       :node="node"
@@ -88,6 +88,7 @@
       :nodeRegistry="nodeRegistry"
       :root-elements="definitions.get('rootElements')"
       @add-node="addNode"
+      @replace-node="replaceNode"
       @remove-node="removeNode"
       @set-cursor="cursor = $event"
       @set-pool-target="poolTarget = $event"
@@ -558,6 +559,7 @@ export default {
       this.moddle.toXML(this.definitions, { format: true }, cb);
     },
     handleDrop({ clientX, clientY, control }) {
+      console.log('handleDrop', control.type);
       this.validateDropTarget({ clientX, clientY, control });
 
       if (!this.allowDrop) {
@@ -580,6 +582,12 @@ export default {
       // Our BPMN models are updated, now add to our nodes
       // @todo come up with random id
       this.addNode({ type: control.type, definition, diagram });
+    },
+    async replaceNode(currentNode, newNode) {
+      store.commit('replaceNode', { currentNode, newNode });
+      await this.$nextTick();
+      const newState = await this.getXmlFromDiagram();
+      undoRedoStore.commit('replaceState', newState);
     },
     addNode({ type, definition, diagram }) {
       /*
@@ -626,7 +634,12 @@ export default {
       });
 
       if (![sequenceFlowId, laneId, associationId, messageFlowId].includes(type)) {
-        setTimeout(() => this.pushToUndoStack());
+        this.pushToUndoStack();
+        console.log('pushing to state for adding', type);
+        // setTimeout(() => {
+        //   this.pushToUndoStack();
+        //   console.log('pushing to state for adding', type);
+        // });
       }
 
       this.poolTarget = null;
@@ -636,6 +649,7 @@ export default {
       store.commit('highlightNode', this.processNode);
       this.$nextTick(() => {
         this.pushToUndoStack();
+        console.log('pushing to state for removeing', node.type);
       });
     },
     getElementsUnderArea(element) {

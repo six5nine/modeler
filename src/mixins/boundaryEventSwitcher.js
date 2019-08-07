@@ -44,12 +44,18 @@ export default {
 
       definition.set('attachedToRef', task.component.node.definition);
       definition.set('cancelActivity', true);
+      definition.set('id', this.node.definition.get('id'));
 
-      this.$emit('add-node', {
+      this.$emit('replace-node', this.node, {
         definition,
         diagram,
         type: boundaryTimerEvent.id,
       });
+      // this.$emit('add-node', {
+      //   definition,
+      //   diagram,
+      //   type: boundaryTimerEvent.id,
+      // });
     },
     addBoundaryOrTimerEvent() {
       const task = this.getTaskUnderShape();
@@ -62,9 +68,9 @@ export default {
         return;
       }
 
-      this.$nextTick(() => {
-        this.$emit('remove-node', this.node);
-      });
+      // this.$nextTick(() => {
+      //   this.$emit('remove-node', this.node);
+      // });
 
       if (selfIsBoundaryEvent) {
         this.addTimerEvent();

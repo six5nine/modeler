@@ -10,7 +10,8 @@ const groups = portGroups.reduce((groups, group) => {
 
   return groups;
 }, {});
-const markup = '<rect width="1" height="1" fill="none"/>';
+// const markup = '<rect width="1" height="1" fill="none"/>';
+const markup = '<rect width="5" height="5" fill="blue"/>';
 const ports = portGroups.map(group => ({ group, markup }));
 
 export default {

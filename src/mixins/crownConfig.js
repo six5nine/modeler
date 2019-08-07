@@ -333,12 +333,16 @@ export default {
     this.$t = this.$t.bind(this);
   },
   destroyed() {
+    console.log('removing:', this.node.type);
     this.shape.stopListening();
     this.shape.remove();
 
     const process = this.node.pool
       ? this.node.pool.component.containingProcess
       : this.processNode.definition;
+
+    console.log(process.get('flowElements').indexOf(this.node.definition));
+    console.log(this.planeElements.indexOf(this.node.diagram));
 
     pull(process.get('flowElements'), this.node.definition);
     pull(this.planeElements, this.node.diagram);
