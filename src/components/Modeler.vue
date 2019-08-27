@@ -589,18 +589,28 @@ export default {
         this.$emit('parsed');
       });
     },
-    loadXML(xml = this.currentXML) {
-      this.moddle.fromXML(xml, (err, definitions) => {
-        if (err) {
-          return;
-        }
-        definitions.exporter = 'ProcessMaker Modeler';
-        definitions.exporterVersion = version;
-        this.definitions = definitions;
-        this.nodeIdGenerator = new NodeIdGenerator(definitions);
+    getXMLDefinitions(xml, moddle) {
+      return new Promise((resolve, reject) => {
+        moddle.fromXML(xml, (err, definitions) => {
+          if (err) {
+            return reject(err);
+          }
+
+          definitions.exporter = 'ProcessMaker Modeler';
+          definitions.exporterVersion = version;
+          resolve(definitions);
+        });
+      });
+    },
+    async loadXML(xml = this.currentXML) {
+      try {
+        this.definitions = await this.getXMLDefinitions(xml, this.moddle);
+        this.nodeIdGenerator = new NodeIdGenerator(this.definitions);
         store.commit('clearNodes');
         this.renderPaper();
-      });
+      } catch (err) {
+        return;
+      }
     },
     toXML(cb) {
       this.moddle.toXML(this.definitions, { format: true }, cb);
