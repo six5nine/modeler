@@ -28,14 +28,19 @@
     "bpmn-moddle": "^5.1.5",
     "bpmnlint": "^5.0.0",
     "bpmnlint-plugin-processmaker": "1.0.2",
+    "canvas": "^2.6.0",
+    "canvg": "^2.0.0",
     "file-saver": "^2.0.0-rc.4",
     "jointjs": "^3.0.4",
+    "jsdom": "^13.2.0",
+    "jspdf": "^1.5.3",
     "lodash": "^4.17.11",
     "luxon": "^1.11.4",
     "vue": "^2.5.17",
     "vue-deepset": "^0.6.3",
     "vue-upload-component": "^2.8.14",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "xmldom": "^0.1.27"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^1.9.0",

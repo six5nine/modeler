@@ -9,12 +9,16 @@
 
         <div class="ml-auto">
           <b-btn variant="secondary" size="sm" v-b-modal="'uploadmodal'" class="mr-2">
-            <i class="fas fa-upload mr-1"/>
+            <i class="fas fa-upload mr-1" />
             {{ $t('Upload XML') }}
           </b-btn>
           <b-btn variant="secondary" size="sm" data-test="downloadXMLBtn" @click="download">
-            <i class="fas fa-download mr-1"/>
+            <i class="fas fa-download mr-1" />
             {{ $t('Download XML') }}
+          </b-btn>
+          <b-btn variant="secondary" size="sm" @click="renderPDF">
+            <i class="fas fa-download mr-1" />
+            {{ $t('Download as PDF') }}
           </b-btn>
         </div>
       </b-card-header>
@@ -58,6 +62,8 @@ import FileUpload from 'vue-upload-component';
 import FilerSaver from 'file-saver';
 import ValidationStatus from '@/components/ValidationStatus';
 import runningInCypressTest from '@/runningInCypressTest';
+import jsPDF from 'jspdf';
+import canvg from 'canvg';
 
 const reader = new FileReader();
 
@@ -95,10 +101,33 @@ export default {
             window.xml = xml;
             return;
           }
-          let file = new File([xml], 'bpmnProcess.xml', {type: 'text/xml'});
+          let file = new File([xml], 'bpmnProcess.xml', { type: 'text/xml' });
           FilerSaver.saveAs(file);
         }
       });
+    },
+    renderPDF() {
+      const svg = document.getElementById('v-2');
+
+      const serializer = new XMLSerializer();
+      const svgString = serializer.serializeToString(svg);
+
+      const canvas = document.getElementById('template');
+      const context = canvas.getContext('2d');
+
+      context.fillStyle = '#FFFF';
+
+      canvg('template', svgString);
+
+      const imgData = document.getElementById('template').toDataURL('image/png');
+
+      const doc = new jsPDF({
+        orientation: 'landscape',
+        format: 'letter',
+      });
+      doc.setFontSize(10);
+      doc.addImage(imgData, 'PNG', 10, 50);
+      doc.save('test.pdf');
     },
     loadXmlIntoModeler() {
       this.$refs.modeler.loadXML(this.uploadedXml);
