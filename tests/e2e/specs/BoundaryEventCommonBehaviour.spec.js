@@ -202,7 +202,7 @@ boundaryEventData.forEach(({ type, nodeType, eventXMLSnippet, eventXMLSnippetWit
       getElementAtPosition(boundaryEventPosition).getPosition().should('contain', boundaryEventConnectedPosition);
     });
 
-    it('correctly re-renders a boundary event on undo and redo', () => {
+    it.only('correctly re-renders a boundary event on undo and redo', () => {
       dragFromSourceToDest(nodeTypes.task, taskPosition);
       dragFromSourceToDest(nodeType, taskPosition);
 
@@ -211,7 +211,8 @@ boundaryEventData.forEach(({ type, nodeType, eventXMLSnippet, eventXMLSnippetWit
       cy.get('[data-test=redo]').click({ force: true });
       waitToRenderAllShapes();
 
-      getElementAtPosition(taskPosition, nodeTypes.task)
+      const positionOffset = 5;
+      getElementAtPosition({ x: taskPosition.x + positionOffset, y: taskPosition.y + positionOffset }, nodeTypes.task)
         .then(getComponentsEmbeddedInShape)
         .then(events => events[0])
         .then($event => {
