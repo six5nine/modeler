@@ -211,8 +211,7 @@ boundaryEventData.forEach(({ type, nodeType, eventXMLSnippet, eventXMLSnippetWit
       cy.get('[data-test=redo]').click({ force: true });
       waitToRenderAllShapes();
 
-      const positionOffset = 5;
-      getElementAtPosition({ x: taskPosition.x + positionOffset, y: taskPosition.y + positionOffset }, nodeTypes.task)
+      getElementAtPosition(taskPosition, nodeTypes.task)
         .then(getComponentsEmbeddedInShape)
         .then(events => events[0])
         .then($event => {
