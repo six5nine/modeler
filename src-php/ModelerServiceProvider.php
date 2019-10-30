@@ -15,7 +15,6 @@ class ModelerServiceProvider extends ServiceProvider {
 
         $this->publishes([
             __DIR__ . '/../public' => public_path('vendor/processmaker/packages/package-modeler'),
-            __DIR__ . '/../dist' => public_path('vendor/processmaker/packages/package-modeler/dist'),
         ], 'package-modeler');
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'package-modeler');
