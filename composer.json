@@ -1,0 +1,26 @@
+{
+    "name": "processmaker/package-modeler",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Nolan Ehrstrom",
+            "email": "nolan.ehrstrom@processmaker.com"
+        }
+    ],
+    "repositories": [
+    ],
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "ProcessMaker\\Package\\Modeler\\": "src-php"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ProcessMaker\\Package\\Modeler\\ModelerServiceProvider"
+            ]
+        }
+    }
+}
