@@ -1,17 +1,12 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
+const vueConfig = require('./vue.config.js');
+let webpackConfig = vueConfig.configureWebpack;
 
-mix.webpackConfig({
+webpackConfig.resolve.alias['@'] = path.resolve(__dirname, 'src');
+webpackConfig.externals = { 'vue' : 'Vue' };
 
-    externals: {
-    },
-
-    resolve: {
-        alias: {
-            '@processmaker/modeler': path.resolve(__dirname, 'dist/modeler.common.js')
-        }
-    }
-    
-}).setPublicPath('public')
+console.log(webpackConfig);
+mix.webpackConfig(webpackConfig).setPublicPath('public')
     .js('resources/js/index.js', 'js')
     .js('resources/js/initialLoad.js', 'js')
     .copy("dist/img", "public/js/img");

@@ -17,8 +17,9 @@ import {
     messageFlow,
     serviceTask,
     callActivity,
-    eventBasedGateway
-  } from '@processmaker/modeler';
+    eventBasedGateway,
+    registerNodes
+  } from '@/components/nodes';
   import ModelerScreenSelect from './components/inspector/ScreenSelect';
   import UserSelect from './components/inspector/UserSelect';
   import GroupSelect from './components/inspector/GroupSelect';
@@ -29,7 +30,6 @@ import {
   import ConfigEditor from './components/inspector/ConfigEditor';
   import ScriptSelect from './components/inspector/ScriptSelect';
   import StartPermission from './components/inspector/StartPermission';
-  import {registerNodes} from "@processmaker/modeler";
   import Interstitial from "./components/inspector/Interstitial";
   
   Vue.component('UserSelect', UserSelect);

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { Modeler, Statusbar, ValidationStatus } from "@processmaker/modeler";
+import { Modeler, Statusbar, ValidationStatus } from "@/components/nodes";
 
 export default {
   name: 'ModelerApp',
