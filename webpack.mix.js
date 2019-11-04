@@ -8,5 +8,4 @@ webpackConfig.externals = { 'vue': 'Vue' };
 
 mix.webpackConfig(webpackConfig).setPublicPath('public')
   .js('resources/js/index.js', 'js')
-  .js('resources/js/initialLoad.js', 'js')
-  .copy('dist/img', 'public/js/img');
+  .js('resources/js/initialLoad.js', 'js');
