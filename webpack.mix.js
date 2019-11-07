@@ -4,7 +4,7 @@ const path = require('path');
 let webpackConfig = vueConfig.configureWebpack;
 
 webpackConfig.resolve.alias['@'] = path.resolve(__dirname, 'src');
-webpackConfig.externals = { 'vue': 'Vue' };
+webpackConfig.externals['vue'] = 'Vue';
 
 mix.setResourceRoot('/vendor/processmaker/packages/package-modeler/');
 
