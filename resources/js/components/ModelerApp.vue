@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { Modeler, Statusbar, ValidationStatus } from "@/components/nodes";
+import { Modeler, Statusbar, ValidationStatus } from "@modeler";
 
 export default {
   name: 'ModelerApp',

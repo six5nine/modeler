@@ -36,6 +36,7 @@ module.exports = {
           /^bootstrap\/.+$/,
           /^@processmaker\/(?!processmaker-bpmn-moddle).+$/,
           /^@fortawesome\/.+$/,
+          'jointjs',
           'i18next',
           '@panter/vue-i18next',
           'luxon',

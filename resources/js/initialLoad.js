@@ -19,7 +19,7 @@ import {
     callActivity,
     eventBasedGateway,
     registerNodes
-  } from '@/components/nodes';
+  } from '@modeler';
   import ModelerScreenSelect from './components/inspector/ScreenSelect';
   import UserSelect from './components/inspector/UserSelect';
   import GroupSelect from './components/inspector/GroupSelect';
