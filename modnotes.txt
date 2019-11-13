@@ -1,0 +1,34 @@
+API
+Xml IN/OUT
+registerNode
+registerBpmnExtension
+
+--------------------------------------------
+
+Build server will need npm package dropdown in addition to composer
+Add a check to make sure semver was incremented correctly when merged into main branch
+
+Tasks for js team
+- make it work with HMR in core or at least npm run watch
+- must compile in less than 3 seconds when change detected
+- Maybe we should still package this as a composer package so we can do art packages:develop modeler
+
+---------------------------------------------
+
+art packages:develop modeler --- assumes processmaker/package-modeler
+- Anything with the prefix processmaker/package-* is assumed to have the following SLA contract:
+-- npm run watch must publish --force on core
+
+Command asks:
+- where to save locally (default ../packages/ProcessMaker/package-{name})
+- Checks if exists, clones if not
+- Adds to composer repository SOMEHOW NOT EDITING COMPOSER.JSON?????? like a global setting???
+  - see in vagrant: ~/.composer/config.json
+  - somebody already attempted to do this with a wildcard!
+- Runs composer install, gives instructions to npm run watch on package
+
+
+---------------- FRIDAY QUESTIONS --------------------
+
+- Continue as composer package for above reasons?
+- Carve out time for packages:develop (rework package command in general)

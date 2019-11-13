@@ -143,6 +143,9 @@ import { addIdToNodeAndSetUpDiagramReference, addNodeToProcess, getTargetProcess
 
 const version = '1.0';
 
+console.log('Modeler.vue using Vue ID', id(Vue));
+
+
 export default {
   components: {
     controls,
@@ -200,9 +203,13 @@ export default {
       minusIcon: faMinus,
       expandIcon: faExpand,
       compressIcon: faCompress,
+      nodes: [],
     };
   },
   watch: {
+    nodes() {
+      console.log('nodes changed', this.nodes.length, this.nodes);
+    },
     isRendering() {
       if (this.isRendering) {
         document.body.style.cursor = 'wait !important';
@@ -234,7 +241,7 @@ export default {
       return undefined;
     },
     autoValidate: () => store.getters.autoValidate,
-    nodes: () => store.getters.nodes,
+    // nodes: () => store.getters.nodes,
     canUndo() {
       return undoRedoStore.getters.canUndo;
     },
@@ -804,6 +811,7 @@ export default {
 
     this.registerNode(Process);
     /* Initialize the BpmnModdle and its extensions */
+    console.log("--------------- Fireing modeler-init ---------------------");
     window.ProcessMaker.EventBus.$emit('modeler-init', {
       registerInspectorExtension,
       registerBpmnExtension: this.registerBpmnExtension,
@@ -815,6 +823,29 @@ export default {
     this.linter = new Linter(linterConfig);
   },
   mounted() {
+    console.log('Modeler.vue mounted');
+    console.log('Using vue instance', id(Vue));
+
+
+
+
+
+
+
+
+    store.subscribe((mutation, state) => {
+      console.log('Got subscribe mutation', mutation, state);
+      this.nodes = state.nodes;
+    });
+
+
+
+
+
+
+
+
+
     this.graph = new dia.Graph();
     store.commit('setGraph', this.graph);
     this.graph.set('interactiveFunc', cellView => {

@@ -13,7 +13,8 @@ class ModelerManager
     {
         $this->javascriptRegistry = [];
         // Include our default javascript for our core controls
-        $this->addScript(mix('js/initialLoad.js', 'vendor/processmaker/packages/package-modeler'));
+        // $this->addScript(mix('js/initialLoad.js', 'vendor/processmaker/packages/package-modeler'));
+        $this->addScript(mix('js/test.js', 'vendor/processmaker/packages/package-modeler'));
     }
 
     /**

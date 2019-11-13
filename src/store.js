@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import flatten from 'lodash/flatten';
 
 Vue.use(Vuex);
+console.log('Rregistering this instance of Vue ID', id(Vue));
 
 function makeDefinitionPropertyReactive(definition, key, value) {
   if (definition.hasOwnProperty(key)) {
@@ -23,7 +24,10 @@ export default new Vuex.Store({
     globalProcesses: [],
   },
   getters: {
-    nodes: state => state.nodes,
+    nodes: state => {
+      console.log('Getting nodes from vuex store ID');
+      return state.nodes;
+    },
     highlightedNode: state => state.highlightedNode,
     nodeShape: state => node => {
       return state.graph.getCells().find(cell => cell.component && cell.component.node === node);
@@ -65,6 +69,7 @@ export default new Vuex.Store({
        * (used in v-for when rendering the node). Relying on the
        * definition ID will cause issues as the user can change the
        * ID of elements. */
+      console.log('Adding node to vuex. Id: ', id(Vuex));
       node._modelerId = '_modelerId_' + node.definition.get('id');
 
       state.nodes.push(node);

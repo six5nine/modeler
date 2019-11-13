@@ -24,6 +24,22 @@
 <script>
 import { Modeler, Statusbar, ValidationStatus } from "@modeler";
 
+import Vue from 'vue';
+import Vuex from 'vuex';
+console.log('ModelerApp.vue using Vue ID', id(Vue));
+console.log('ModelerApp.vue using VueX ID', id(Vuex))
+
+// import {
+//     startEvent,
+// } from '@modeler'
+// // ProcessMaker.nodeTypes.push(startEvent);
+// ProcessMaker.EventBus.$on('modeler-init', ({ registerNode }) => {
+//   registerNode(startEvent);
+// });
+// import { registerNodes } from '@modeler';
+// ProcessMaker.EventBus.$on('modeler-init', registerNodes);
+
+
 export default {
   name: 'ModelerApp',
   components: {

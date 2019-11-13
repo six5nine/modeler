@@ -1,0 +1,42 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/nolan/.nvm/versions/node/v8.12.0/bin/node',
+1 verbose cli   '/Users/nolan/.nvm/versions/node/v8.12.0/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'build-bundle',
+1 verbose cli   '--fix',
+1 verbose cli   '--no-cache' ]
+2 info using npm@6.9.0
+3 info using node@v8.12.0
+4 verbose run-script [ 'prebuild-bundle', 'build-bundle', 'postbuild-bundle' ]
+5 info lifecycle @processmaker/modeler@0.17.5~prebuild-bundle: @processmaker/modeler@0.17.5
+6 info lifecycle @processmaker/modeler@0.17.5~build-bundle: @processmaker/modeler@0.17.5
+7 verbose lifecycle @processmaker/modeler@0.17.5~build-bundle: unsafe-perm in lifecycle true
+8 verbose lifecycle @processmaker/modeler@0.17.5~build-bundle: PATH: /Users/nolan/.nvm/versions/node/v8.12.0/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/Users/nolan/src/packages/ProcessMaker/modeler/node_modules/.bin:/Users/nolan/.nvm/versions/node/v8.12.0/bin:/Users/nolan/.rbenv/shims:/Users/nolan/.composer/vendor/bin:/Users/nolan/.composer/vendor/bin:/usr/local/opt/node@8/bin:/Users/nolan/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/nolan/.nvm/versions/node/v8.12.0/bin:/Users/nolan/.rbenv/shims:/Users/nolan/.composer/vendor/bin:/usr/local/opt/node@8/bin:/Users/nolan/bin
+9 verbose lifecycle @processmaker/modeler@0.17.5~build-bundle: CWD: /Users/nolan/src/packages/ProcessMaker/modeler
+10 silly lifecycle @processmaker/modeler@0.17.5~build-bundle: Args: [ '-c',
+10 silly lifecycle   'vue-cli-service build --target lib --name modeler ./src/components/nodes/index.js' ]
+11 silly lifecycle @processmaker/modeler@0.17.5~build-bundle: Returned: code: 1  signal: null
+12 info lifecycle @processmaker/modeler@0.17.5~build-bundle: Failed to exec build-bundle script
+13 verbose stack Error: @processmaker/modeler@0.17.5 build-bundle: `vue-cli-service build --target lib --name modeler ./src/components/nodes/index.js`
+13 verbose stack Exit status 1
+13 verbose stack     at EventEmitter.<anonymous> (/Users/nolan/.nvm/versions/node/v8.12.0/lib/node_modules/npm/node_modules/npm-lifecycle/index.js:301:16)
+13 verbose stack     at emitTwo (events.js:126:13)
+13 verbose stack     at EventEmitter.emit (events.js:214:7)
+13 verbose stack     at ChildProcess.<anonymous> (/Users/nolan/.nvm/versions/node/v8.12.0/lib/node_modules/npm/node_modules/npm-lifecycle/lib/spawn.js:55:14)
+13 verbose stack     at emitTwo (events.js:126:13)
+13 verbose stack     at ChildProcess.emit (events.js:214:7)
+13 verbose stack     at maybeClose (internal/child_process.js:915:16)
+13 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
+14 verbose pkgid @processmaker/modeler@0.17.5
+15 verbose cwd /Users/nolan/src/packages/ProcessMaker/modeler
+16 verbose Darwin 19.0.0
+17 verbose argv "/Users/nolan/.nvm/versions/node/v8.12.0/bin/node" "/Users/nolan/.nvm/versions/node/v8.12.0/bin/npm" "run" "build-bundle" "--fix" "--no-cache"
+18 verbose node v8.12.0
+19 verbose npm  v6.9.0
+20 error code ELIFECYCLE
+21 error errno 1
+22 error @processmaker/modeler@0.17.5 build-bundle: `vue-cli-service build --target lib --name modeler ./src/components/nodes/index.js`
+22 error Exit status 1
+23 error Failed at the @processmaker/modeler@0.17.5 build-bundle script.
+23 error This is probably not a problem with npm. There is likely additional logging output above.
+24 verbose exit [ 1, true ]
