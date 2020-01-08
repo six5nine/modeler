@@ -6,7 +6,7 @@
         :cursor="cursor"
         :is-rendering="isRendering"
         :paper-manager="paperManager"
-        :allBreadcrumbs="allBreadcrumbs"
+        :breadcrumbData="breadcrumbData"
         @load-xml="loadXML"
         @toggle-panels-compressed="panelsCompressed = $event"
         @toggle-mini-map-open="miniMapOpen = $event"
@@ -126,12 +126,7 @@ import PaperManager from '../paperManager';
 import registerInspectorExtension from '@/components/InspectorExtensionManager';
 
 import initAnchor from '@/mixins/linkManager.js';
-import {
-  addIdToNodeAndSetUpDiagramReference,
-  addNodeToProcess,
-  getTargetProcess,
-  isBoundaryEvent,
-} from '@/components/nodeManager';
+import { addIdToNodeAndSetUpDiagramReference, addNodeToProcess, getTargetProcess, isBoundaryEvent } from '@/components/nodeManager';
 import ensureShapeIsNotCovered from '@/components/shapeStackUtils';
 import ToolBar from '@/components/toolbar/ToolBar';
 import moveShapeByKeypress from '@/components/modeler/moveWithArrowKeys';
@@ -183,7 +178,7 @@ export default {
       isRendering: false,
       allWarnings: [],
       nodeTypes: [],
-      allBreadcrumbs: [],
+      breadcrumbData: [],
     };
   },
   watch: {
@@ -782,7 +777,7 @@ export default {
         undoRedoStore.dispatch('pushState', xml);
       },
       addWarnings: warnings => this.$emit('warnings', warnings),
-      breadcrumbs: breadcrumbs =>  this.allBreadcrumbs.push(breadcrumbs),
+      breadcrumbs: breadcrumbs => this.breadcrumbData.push(breadcrumbs),
     });
   },
 };
